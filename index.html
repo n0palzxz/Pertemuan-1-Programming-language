@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 1 Programming Language</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet"/>
+
+<style>
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+</style>
+
+</head>
+
+<body class="min-h-screen bg-base-200 p-6 pb-16">
+
+<h1 class="text-3xl font-bold text-center mb-6">
+    Tugas Pertemuan 1 Programming Language
+</h1>
+
+<div role="tablist" class="tabs tabs-boxed justify-center mb-6 flex-wrap">
+  <a role="tab" class="tab tab-active" onclick="showTab(1)">Latihan 1 - Input Output</a>
+  <a role="tab" class="tab" onclick="showTab(2)">Latihan 2 - Operasi Matematika</a>
+  <a role="tab" class="tab" onclick="showTab(3)">Latihan 3 - Percabangan (IF)</a>
+  <a role="tab" class="tab" onclick="showTab(4)">Latihan 4 - Percabangan Majemuk</a>
+  <a role="tab" class="tab" onclick="showTab(5)">Challenge 1 - Kalkulator</a>
+  <a role="tab" class="tab" onclick="showTab(6)">Challenge 2 - Sistem Login</a>
+  <a role="tab" class="tab" onclick="showTab(7)">Challenge 3 - Tebak Angka</a>
+</div>
+
+<div class="flex justify-center">
+<div class="card w-96 bg-base-100 shadow-2xl">
+<div class="card-body text-center">
+
+<!-- TAB 1 -->
+<div id="tab1">
+<h2 class="text-xl font-bold mb-3">Input Output</h2>
+<input type="text" id="nama" class="input input-bordered w-full mb-3" placeholder="Masukkan nama">
+<button class="btn btn-primary w-full mb-2" onclick="prosesNama()">Kirim</button>
+<div id="hasilNama" class="mt-4"></div>
+</div>
+
+<!-- TAB 2 -->
+<div id="tab2" class="hidden">
+<h2 class="text-xl font-bold mb-3">Operasi Matematika</h2>
+<input type="number" id="angka1" class="input input-bordered w-full mb-2" placeholder="Angka pertama">
+<input type="number" id="angka2" class="input input-bordered w-full mb-3" placeholder="Angka kedua">
+<button class="btn btn-primary w-full" onclick="hitung()">Hitung</button>
+<div id="hasilHitung" class="mt-4 font-bold"></div>
+</div>
+
+<!-- TAB 3 -->
+<div id="tab3" class="hidden">
+<h2 class="text-xl font-bold mb-3">Percabangan (IF)</h2>
+<input type="number" id="nilaiLulus" class="input input-bordered w-full mb-3" placeholder="Masukkan nilai">
+<button class="btn btn-primary w-full" onclick="cekKelulusan()">Cek</button>
+<div id="hasilKelulusan" class="mt-4 font-bold"></div>
+</div>
+
+<!-- TAB 4 -->
+<div id="tab4" class="hidden">
+<h2 class="text-xl font-bold mb-3">Percabangan Majemuk</h2>
+<input type="number" id="nilaiHuruf" class="input input-bordered w-full mb-3" placeholder="Masukkan nilai">
+<button class="btn btn-primary w-full mb-3" onclick="cekNilai()">Cek</button>
+<div id="hasilHuruf" class="mt-2 font-bold"></div>
+
+<div class="text-left text-sm bg-base-200 p-3 rounded-lg mt-3">
+<b>Keterangan Nilai:</b>
+<ul class="list-disc list-inside">
+<li>85 – 100 : A</li>
+<li>75 – 84 : B</li>
+<li>65 – 74 : C</li>
+<li>50 – 64 : D</li>
+<li>< 50 : E</li>
+</ul>
+</div>
+</div>
+
+<!-- TAB 5 -->
+<div id="tab5" class="hidden">
+<h2 class="text-xl font-bold mb-3">Kalkulator</h2>
+<input type="text" id="display" class="input input-bordered w-full mb-3 text-right text-lg" readonly>
+<div class="grid grid-cols-4 gap-2">
+<button class="btn" onclick="clearDisplay()">C</button>
+<button class="btn" onclick="append('/')">÷</button>
+<button class="btn" onclick="append('*')">×</button>
+<button class="btn" onclick="append('-')">-</button>
+
+<button class="btn" onclick="append('7')">7</button>
+<button class="btn" onclick="append('8')">8</button>
+<button class="btn" onclick="append('9')">9</button>
+<button class="btn" onclick="append('+')">+</button>
+
+<button class="btn" onclick="append('4')">4</button>
+<button class="btn" onclick="append('5')">5</button>
+<button class="btn" onclick="append('6')">6</button>
+<button class="btn btn-primary row-span-2" onclick="calculate()">=</button>
+
+<button class="btn" onclick="append('1')">1</button>
+<button class="btn" onclick="append('2')">2</button>
+<button class="btn" onclick="append('3')">3</button>
+
+<button class="btn col-span-2" onclick="append('0')">0</button>
+<button class="btn" onclick="append('.')">.</button>
+</div>
+</div>
+
+<!-- TAB 6 LOGIN -->
+<div id="tab6" class="hidden">
+<h2 class="text-xl font-bold mb-3">Sistem Login</h2>
+
+<div class="text-left text-sm mb-3 bg-base-200 p-3 rounded-lg">
+<b>Akun Demo:</b><br>
+Username: <b>admin</b><br>
+Password: <b>12345</b>
+</div>
+
+<input type="text" id="username" class="input input-bordered w-full mb-2" placeholder="Masukkan Username">
+
+<div class="relative mb-3">
+<input type="password" id="password" class="input input-bordered w-full pr-16" placeholder="Masukkan Password">
+<button type="button" class="absolute right-2 top-2 text-sm btn btn-xs" onclick="togglePassword()">Show</button>
+</div>
+
+<button class="btn btn-primary w-full" onclick="login()">Login</button>
+<div id="hasilLogin" class="mt-4"></div>
+</div>
+
+<!-- TAB 7 GAME -->
+<div id="tab7" class="hidden">
+<h2 class="text-xl font-bold mb-3">Mini Game Tebak Angka</h2>
+
+<div class="text-sm bg-base-200 p-3 rounded-lg mb-3 text-left">
+Tebak angka antara <b>1 sampai 10</b>.<br>
+Maksimal <b>5 kali percobaan</b>.
+</div>
+
+<input type="number" id="tebakan" class="input input-bordered w-full mb-3" placeholder="Masukkan angka">
+
+<button class="btn btn-primary w-full mb-2" onclick="cekTebakan()">Tebak</button>
+<button class="btn btn-outline w-full mb-3" onclick="resetGame()">Main Lagi</button>
+
+<div id="infoPercobaan" class="text-sm mb-2"></div>
+<div id="hasilTebak"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- ================= FOOTER RUNNING TEXT SEAMLESS ================= -->
+<footer class="fixed bottom-0 left-0 w-full bg-primary text-primary-content overflow-hidden h-10 flex items-center">
+    <div class="marquee">
+        <div class="marquee-content">
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+            Nauval Yasha Fadillah - 11525008 - Sistem Informasi |
+
+        </div>
+    </div>
+</footer>
+
+<script>
+function showTab(n){
+for(let i=1;i<=7;i++){
+document.getElementById("tab"+i).classList.add("hidden");
+document.querySelectorAll(".tab")[i-1].classList.remove("tab-active");
+}
+document.getElementById("tab"+n).classList.remove("hidden");
+document.querySelectorAll(".tab")[n-1].classList.add("tab-active");
+}
+
+function prosesNama(){
+let nama=document.getElementById("nama").value.trim();
+let output=document.getElementById("hasilNama");
+if(nama===""){
+output.innerHTML=`<div class="alert alert-error">Nama tidak boleh kosong!</div>`;
+return;
+}
+nama=nama.charAt(0).toUpperCase()+nama.slice(1).toLowerCase();
+let jam=new Date().getHours();
+let sapaan=(jam<12)?"Selamat Pagi":(jam<15)?"Selamat Siang":(jam<18)?"Selamat Sore":"Selamat Malam";
+output.innerHTML=`<div class="alert alert-success">${sapaan}, <b>${nama}</b></div>`;
+}
+
+function hitung(){
+let a=parseFloat(angka1.value);
+let b=parseFloat(angka2.value);
+let output=document.getElementById("hasilHitung");
+if(isNaN(a)||isNaN(b)){
+output.innerHTML=`<div class="alert alert-error">Masukkan angka dengan benar!</div>`;
+return;
+}
+output.innerHTML=`<div class="card bg-base-200 p-4 text-left">
+<b>Penjumlahan:</b> ${a+b}<br>
+<b>Pengurangan:</b> ${a-b}<br>
+<b>Perkalian:</b> ${a*b}<br>
+<b>Pembagian:</b> ${b!==0?a/b:"Tidak bisa dibagi 0"}
+</div>`;
+}
+
+function cekKelulusan(){
+let nilai=parseFloat(nilaiLulus.value);
+hasilKelulusan.innerHTML=(nilai>=75)?
+`<div class="alert alert-success">LULUS (≥75)</div>`:
+`<div class="alert alert-error">TIDAK LULUS (<75)</div>`;
+}
+
+function cekNilai(){
+let n=parseFloat(nilaiHuruf.value);
+let huruf=(n>=85)?"A":(n>=75)?"B":(n>=65)?"C":(n>=50)?"D":"E";
+hasilHuruf.innerHTML="Predikat Nilai : "+huruf;
+}
+
+function append(v){display.value+=v;}
+function clearDisplay(){display.value="";}
+function calculate(){try{display.value=eval(display.value);}catch{display.value="Error";}}
+
+function login(){
+let user=username.value.trim();
+let pass=password.value.trim();
+let output=document.getElementById("hasilLogin");
+if(user===""||pass===""){
+output.innerHTML=`<div class="alert alert-warning">Tidak boleh kosong!</div>`;
+return;
+}
+output.innerHTML=`<div class="flex justify-center"><span class="loading loading-spinner"></span></div>`;
+setTimeout(()=>{
+output.innerHTML=(user==="admin"&&pass==="12345")?
+`<div class="alert alert-success">Login Berhasil</div>`:
+`<div class="alert alert-error">Login Gagal</div>`;
+},1000);
+}
+
+function togglePassword(){
+password.type=(password.type==="password")?"text":"password";
+}
+
+let angkaKomputer=Math.floor(Math.random()*10)+1;
+let percobaan=0;
+let maksimalPercobaan=5;
+
+function cekTebakan(){
+let t=parseInt(tebakan.value);
+if(isNaN(t)||t<1||t>10){
+hasilTebak.innerHTML=`<div class="alert alert-warning">Masukkan 1-10!</div>`;
+return;
+}
+percobaan++;
+infoPercobaan.innerHTML=`Percobaan ${percobaan}/${maksimalPercobaan}`;
+if(t===angkaKomputer){
+hasilTebak.innerHTML=`<div class="alert alert-success">🎉 Benar! Angka ${angkaKomputer}</div>`;
+tebakan.disabled=true;
+}else if(percobaan>=maksimalPercobaan){
+hasilTebak.innerHTML=`<div class="alert alert-error">Game Over! Angka ${angkaKomputer}</div>`;
+tebakan.disabled=true;
+}else{
+hasilTebak.innerHTML=`<div class="alert alert-info">${t>angkaKomputer?"Terlalu Besar":"Terlalu Kecil"}</div>`;
+}
+}
+
+function resetGame(){
+angkaKomputer=Math.floor(Math.random()*10)+1;
+percobaan=0;
+tebakan.disabled=false;
+tebakan.value="";
+hasilTebak.innerHTML="";
+infoPercobaan.innerHTML="";
+}
+</script>
+
+</body>
+</html>
